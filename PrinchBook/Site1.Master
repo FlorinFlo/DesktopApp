@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="PrinchBook.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Princh Book_a_PC</title>
+    <link href="Css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="Images/Princh.png" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">  
+         
+        <div>
+            <div id="header" >
+                <div id="inner">
+                    
+                    
+                    <p>Book your Pc with Princh</p>
+                    
+                    <asp:Panel runat="server" HorizontalAlign="Center">
+                        <asp:Image runat="server" ImageUrl="~/Images/Princh.png" Width="23" Height="23" />                           
+                        
+                        
+                    </asp:Panel>
+                    
+                    
+                    </div>
+                <div style="text-align:right; margin-right:10px"> 
+                    <asp:Label runat="server" ID="logedInAs" Text="Log in " ForeColor="White"  Visible="false" />
+                    <asp:Button runat="server" ID="logout" Text="Log out"  style="border-radius:5px" Visible="false"  OnClick="logout_Click" />
+                </div>
+                
+                </div>
+               
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,148 @@
+﻿
+#wizHeader li .prevStep
+{
+    background-color: #669966;
+}
+#wizHeader li .prevStep:after
+{
+    border-left-color:#669966 !important;
+}
+#wizHeader li .currentStep
+{
+    background-color: #C36615;
+}
+#wizHeader li .currentStep:after
+{
+    border-left-color: #C36615 !important;
+}
+#wizHeader li .nextStep
+{
+    background-color:#C2C2C2;
+}
+#wizHeader li .nextStep:after
+{
+    border-left-color:#C2C2C2 !important;
+}
+#wizHeader
+{
+    list-style: none;
+    overflow: hidden;
+    font: 18px Helvetica, Arial, Sans-Serif;
+    margin: 0px;
+    padding: 0px;
+}
+#wizHeader li
+{
+    float: left;
+}
+#wizHeader li a
+{
+    color: white;
+    text-decoration: none;
+    padding: 10px 0 10px 55px;
+    background: brown; /* fallback color */
+    background: hsla(34,85%,35%,1);
+    position: relative;
+    display: block;
+    float: left;
+}
+#wizHeader li a:after
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid hsla(34,85%,35%,1);
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 100%;
+    z-index: 2;
+}
+#wizHeader li a:before
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1;
+}        
+#wizHeader li:first-child a
+{
+    padding-left: 10px;
+}
+#wizHeader li:last-child 
+{
+    padding-right: 50px;
+}
+#wizHeader li a:hover
+{
+    background: #FE9400;
+}
+#wizHeader li a:hover:after
+{
+    border-left-color: #FE9400 !important;
+}        
+.content
+{
+    height:100px;           
+    padding-top:10px;
+   
+}
+.label_padding{
+    padding:50px;
+}
+#header {
+    background-color: #169ED9;
+    width: 100%;
+    height: 120px;
+}
+
+#inner {
+    height: 50%;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+p {
+    color: white;
+    text-align: center;
+    font: 700;
+}
+.noText{
+    display:none;
+}
+#finishTemp{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.calendar{
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px; 
+    border-radius: 8px; 
+    border: 1px solid black; 
+    overflow: hidden;
+}
+.modalBackground{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6000; 
+    background-color:#000;
+    filter:alpha(opacity=60);
+    -moz-opacity:0.6;
+    opacity:0.6;
+}

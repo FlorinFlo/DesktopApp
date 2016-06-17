@@ -1,0 +1,1363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://princh.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://princh.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://princh.com/">
+      <s:element name="getAreas">
+        <s:complexType />
+      </s:element>
+      <s:element name="getAreasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAreasResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getLibraryFor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="area" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLibraryForResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getLibraryForResult" type="tns:ArrayOfLibrary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLibrary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Library" nillable="true" type="tns:Library" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Library">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Area" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReqProfile" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getResources">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="selectedDateAndHour" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="libraryId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getResourcesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getResourcesResult" type="tns:ArrayOfResource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfResource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Resource" nillable="true" type="tns:Resource" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Resource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResourceID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Funct" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Available" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Adult" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResourceType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Setup" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="requireSub">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="requireSubResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="requireSubResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUrlForValidation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUrlForValidationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUrlForValidationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkIfAvailable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="resourceID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="now" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkIfAvailableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="checkIfAvailableResult" type="tns:Booking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Booking">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BookingID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LibraryID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientPass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResourceID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingStart" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingEnd" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getScheduleForLibraryOnDay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="dayofWeek" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getScheduleForLibraryOnDayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getScheduleForLibraryOnDayResult" type="tns:Schedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Schedule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OpeningHour" type="s:duration" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClosingHour" type="s:duration" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="createBookingFromWeb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientId" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientPass" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="resourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createBookingFromWebResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="createBookingFromWebResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllResources">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllResourcesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAllResourcesResult" type="tns:ArrayOfResource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAdultChildResource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAdultChildResourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAdultChildResourceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUnavailableTimes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="openingHour" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="intervals" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="adult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="function" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUnavailableTimesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUnavailableTimesResult" type="tns:ArrayOfDateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDateTime">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="dateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getFunctions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="adult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFunctionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getFunctionsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOneResourceForSelections">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="function" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="startBooking" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endBooking" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOneResourceForSelectionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getOneResourceForSelectionsResult" type="tns:Resource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="libraryId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="validateUserResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserSMS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserBirth" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="createBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientPass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resourceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="createBookingResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserForBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bookingID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserForBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUserForBookingResult" type="tns:Credentials" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ClientID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientPass" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getGlobalSetupId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getGlobalSetupIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getGlobalSetupIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkIfRegistered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="resourceID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkIfRegisteredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkIfRegisteredResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registerLibrary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="libArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="connectionString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="installationType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registerLibraryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registerLibraryResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registerStation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resourceID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resourceType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="funct" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="adult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="available" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="setup" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registerStationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registerStationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStationSetup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="controlPanel" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cmd" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="daysInAdvance" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ageRestriciton" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStationSetupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getStationSetupResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createSetup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="controlPanel" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cmd" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="daysInAdvance" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ageRestriciton" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createSetupResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="getSetup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSetupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSetupResult" type="tns:Setup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Setup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SetupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrebookingDays" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgeRestriction" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ControlPanel" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CmdStatus" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Schedule" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getSetupId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resourceId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSetupIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getSetupIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getGlobalSetup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getGlobalSetupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getGlobalSetupResult" type="tns:Setup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createGlobalSetup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="preebookingDays" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ageRestriction" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="controlPanel" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="cmdStatus" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="image" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="library" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createGlobalSetupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="createGlobalSetupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStationName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getStationNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getStationNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLibraryID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="libArea" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="libName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLibraryIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getLibraryIDResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getConnectionString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="libraryID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getConnectionStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getConnectionStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getAreasSoapIn">
+    <wsdl:part name="parameters" element="tns:getAreas" />
+  </wsdl:message>
+  <wsdl:message name="getAreasSoapOut">
+    <wsdl:part name="parameters" element="tns:getAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLibraryForSoapIn">
+    <wsdl:part name="parameters" element="tns:getLibraryFor" />
+  </wsdl:message>
+  <wsdl:message name="getLibraryForSoapOut">
+    <wsdl:part name="parameters" element="tns:getLibraryForResponse" />
+  </wsdl:message>
+  <wsdl:message name="getResourcesSoapIn">
+    <wsdl:part name="parameters" element="tns:getResources" />
+  </wsdl:message>
+  <wsdl:message name="getResourcesSoapOut">
+    <wsdl:part name="parameters" element="tns:getResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="requireSubSoapIn">
+    <wsdl:part name="parameters" element="tns:requireSub" />
+  </wsdl:message>
+  <wsdl:message name="requireSubSoapOut">
+    <wsdl:part name="parameters" element="tns:requireSubResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUrlForValidationSoapIn">
+    <wsdl:part name="parameters" element="tns:getUrlForValidation" />
+  </wsdl:message>
+  <wsdl:message name="getUrlForValidationSoapOut">
+    <wsdl:part name="parameters" element="tns:getUrlForValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkIfAvailableSoapIn">
+    <wsdl:part name="parameters" element="tns:checkIfAvailable" />
+  </wsdl:message>
+  <wsdl:message name="checkIfAvailableSoapOut">
+    <wsdl:part name="parameters" element="tns:checkIfAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="getScheduleForLibraryOnDaySoapIn">
+    <wsdl:part name="parameters" element="tns:getScheduleForLibraryOnDay" />
+  </wsdl:message>
+  <wsdl:message name="getScheduleForLibraryOnDaySoapOut">
+    <wsdl:part name="parameters" element="tns:getScheduleForLibraryOnDayResponse" />
+  </wsdl:message>
+  <wsdl:message name="createBookingFromWebSoapIn">
+    <wsdl:part name="parameters" element="tns:createBookingFromWeb" />
+  </wsdl:message>
+  <wsdl:message name="createBookingFromWebSoapOut">
+    <wsdl:part name="parameters" element="tns:createBookingFromWebResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllResourcesSoapIn">
+    <wsdl:part name="parameters" element="tns:getAllResources" />
+  </wsdl:message>
+  <wsdl:message name="getAllResourcesSoapOut">
+    <wsdl:part name="parameters" element="tns:getAllResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAdultChildResourceSoapIn">
+    <wsdl:part name="parameters" element="tns:getAdultChildResource" />
+  </wsdl:message>
+  <wsdl:message name="getAdultChildResourceSoapOut">
+    <wsdl:part name="parameters" element="tns:getAdultChildResourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUnavailableTimesSoapIn">
+    <wsdl:part name="parameters" element="tns:getUnavailableTimes" />
+  </wsdl:message>
+  <wsdl:message name="getUnavailableTimesSoapOut">
+    <wsdl:part name="parameters" element="tns:getUnavailableTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFunctionsSoapIn">
+    <wsdl:part name="parameters" element="tns:getFunctions" />
+  </wsdl:message>
+  <wsdl:message name="getFunctionsSoapOut">
+    <wsdl:part name="parameters" element="tns:getFunctionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getOneResourceForSelectionsSoapIn">
+    <wsdl:part name="parameters" element="tns:getOneResourceForSelections" />
+  </wsdl:message>
+  <wsdl:message name="getOneResourceForSelectionsSoapOut">
+    <wsdl:part name="parameters" element="tns:getOneResourceForSelectionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="validateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:validateUser" />
+  </wsdl:message>
+  <wsdl:message name="validateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:validateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="createBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:createBooking" />
+  </wsdl:message>
+  <wsdl:message name="createBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:createBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserForBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:getUserForBooking" />
+  </wsdl:message>
+  <wsdl:message name="getUserForBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserForBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="getGlobalSetupIdSoapIn">
+    <wsdl:part name="parameters" element="tns:getGlobalSetupId" />
+  </wsdl:message>
+  <wsdl:message name="getGlobalSetupIdSoapOut">
+    <wsdl:part name="parameters" element="tns:getGlobalSetupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkIfRegisteredSoapIn">
+    <wsdl:part name="parameters" element="tns:checkIfRegistered" />
+  </wsdl:message>
+  <wsdl:message name="checkIfRegisteredSoapOut">
+    <wsdl:part name="parameters" element="tns:checkIfRegisteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="registerLibrarySoapIn">
+    <wsdl:part name="parameters" element="tns:registerLibrary" />
+  </wsdl:message>
+  <wsdl:message name="registerLibrarySoapOut">
+    <wsdl:part name="parameters" element="tns:registerLibraryResponse" />
+  </wsdl:message>
+  <wsdl:message name="registerStationSoapIn">
+    <wsdl:part name="parameters" element="tns:registerStation" />
+  </wsdl:message>
+  <wsdl:message name="registerStationSoapOut">
+    <wsdl:part name="parameters" element="tns:registerStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStationSetupSoapIn">
+    <wsdl:part name="parameters" element="tns:getStationSetup" />
+  </wsdl:message>
+  <wsdl:message name="getStationSetupSoapOut">
+    <wsdl:part name="parameters" element="tns:getStationSetupResponse" />
+  </wsdl:message>
+  <wsdl:message name="createSetupSoapIn">
+    <wsdl:part name="parameters" element="tns:createSetup" />
+  </wsdl:message>
+  <wsdl:message name="createSetupSoapOut">
+    <wsdl:part name="parameters" element="tns:createSetupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSetupSoapIn">
+    <wsdl:part name="parameters" element="tns:getSetup" />
+  </wsdl:message>
+  <wsdl:message name="getSetupSoapOut">
+    <wsdl:part name="parameters" element="tns:getSetupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSetupIdSoapIn">
+    <wsdl:part name="parameters" element="tns:getSetupId" />
+  </wsdl:message>
+  <wsdl:message name="getSetupIdSoapOut">
+    <wsdl:part name="parameters" element="tns:getSetupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getGlobalSetupSoapIn">
+    <wsdl:part name="parameters" element="tns:getGlobalSetup" />
+  </wsdl:message>
+  <wsdl:message name="getGlobalSetupSoapOut">
+    <wsdl:part name="parameters" element="tns:getGlobalSetupResponse" />
+  </wsdl:message>
+  <wsdl:message name="createGlobalSetupSoapIn">
+    <wsdl:part name="parameters" element="tns:createGlobalSetup" />
+  </wsdl:message>
+  <wsdl:message name="createGlobalSetupSoapOut">
+    <wsdl:part name="parameters" element="tns:createGlobalSetupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStationNameSoapIn">
+    <wsdl:part name="parameters" element="tns:getStationName" />
+  </wsdl:message>
+  <wsdl:message name="getStationNameSoapOut">
+    <wsdl:part name="parameters" element="tns:getStationNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLibraryIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getLibraryID" />
+  </wsdl:message>
+  <wsdl:message name="getLibraryIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getLibraryIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="getConnectionStringSoapIn">
+    <wsdl:part name="parameters" element="tns:getConnectionString" />
+  </wsdl:message>
+  <wsdl:message name="getConnectionStringSoapOut">
+    <wsdl:part name="parameters" element="tns:getConnectionStringResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PrinchService1Soap">
+    <wsdl:operation name="getAreas">
+      <wsdl:input message="tns:getAreasSoapIn" />
+      <wsdl:output message="tns:getAreasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLibraryFor">
+      <wsdl:input message="tns:getLibraryForSoapIn" />
+      <wsdl:output message="tns:getLibraryForSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getResources">
+      <wsdl:input message="tns:getResourcesSoapIn" />
+      <wsdl:output message="tns:getResourcesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="requireSub">
+      <wsdl:input message="tns:requireSubSoapIn" />
+      <wsdl:output message="tns:requireSubSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUrlForValidation">
+      <wsdl:input message="tns:getUrlForValidationSoapIn" />
+      <wsdl:output message="tns:getUrlForValidationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkIfAvailable">
+      <wsdl:input message="tns:checkIfAvailableSoapIn" />
+      <wsdl:output message="tns:checkIfAvailableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getScheduleForLibraryOnDay">
+      <wsdl:input message="tns:getScheduleForLibraryOnDaySoapIn" />
+      <wsdl:output message="tns:getScheduleForLibraryOnDaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="createBookingFromWeb">
+      <wsdl:input message="tns:createBookingFromWebSoapIn" />
+      <wsdl:output message="tns:createBookingFromWebSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllResources">
+      <wsdl:input message="tns:getAllResourcesSoapIn" />
+      <wsdl:output message="tns:getAllResourcesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAdultChildResource">
+      <wsdl:input message="tns:getAdultChildResourceSoapIn" />
+      <wsdl:output message="tns:getAdultChildResourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUnavailableTimes">
+      <wsdl:input message="tns:getUnavailableTimesSoapIn" />
+      <wsdl:output message="tns:getUnavailableTimesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getFunctions">
+      <wsdl:input message="tns:getFunctionsSoapIn" />
+      <wsdl:output message="tns:getFunctionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getOneResourceForSelections">
+      <wsdl:input message="tns:getOneResourceForSelectionsSoapIn" />
+      <wsdl:output message="tns:getOneResourceForSelectionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="validateUser">
+      <wsdl:input message="tns:validateUserSoapIn" />
+      <wsdl:output message="tns:validateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="createBooking">
+      <wsdl:input message="tns:createBookingSoapIn" />
+      <wsdl:output message="tns:createBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserForBooking">
+      <wsdl:input message="tns:getUserForBookingSoapIn" />
+      <wsdl:output message="tns:getUserForBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getGlobalSetupId">
+      <wsdl:input message="tns:getGlobalSetupIdSoapIn" />
+      <wsdl:output message="tns:getGlobalSetupIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkIfRegistered">
+      <wsdl:input message="tns:checkIfRegisteredSoapIn" />
+      <wsdl:output message="tns:checkIfRegisteredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registerLibrary">
+      <wsdl:input message="tns:registerLibrarySoapIn" />
+      <wsdl:output message="tns:registerLibrarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registerStation">
+      <wsdl:input message="tns:registerStationSoapIn" />
+      <wsdl:output message="tns:registerStationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStationSetup">
+      <wsdl:input message="tns:getStationSetupSoapIn" />
+      <wsdl:output message="tns:getStationSetupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="createSetup">
+      <wsdl:input message="tns:createSetupSoapIn" />
+      <wsdl:output message="tns:createSetupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSetup">
+      <wsdl:input message="tns:getSetupSoapIn" />
+      <wsdl:output message="tns:getSetupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSetupId">
+      <wsdl:input message="tns:getSetupIdSoapIn" />
+      <wsdl:output message="tns:getSetupIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getGlobalSetup">
+      <wsdl:input message="tns:getGlobalSetupSoapIn" />
+      <wsdl:output message="tns:getGlobalSetupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="createGlobalSetup">
+      <wsdl:input message="tns:createGlobalSetupSoapIn" />
+      <wsdl:output message="tns:createGlobalSetupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getStationName">
+      <wsdl:input message="tns:getStationNameSoapIn" />
+      <wsdl:output message="tns:getStationNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLibraryID">
+      <wsdl:input message="tns:getLibraryIDSoapIn" />
+      <wsdl:output message="tns:getLibraryIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getConnectionString">
+      <wsdl:input message="tns:getConnectionStringSoapIn" />
+      <wsdl:output message="tns:getConnectionStringSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PrinchService1Soap" type="tns:PrinchService1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAreas">
+      <soap:operation soapAction="http://princh.com/getAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLibraryFor">
+      <soap:operation soapAction="http://princh.com/getLibraryFor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResources">
+      <soap:operation soapAction="http://princh.com/getResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requireSub">
+      <soap:operation soapAction="http://princh.com/requireSub" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUrlForValidation">
+      <soap:operation soapAction="http://princh.com/getUrlForValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkIfAvailable">
+      <soap:operation soapAction="http://princh.com/checkIfAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getScheduleForLibraryOnDay">
+      <soap:operation soapAction="http://princh.com/getScheduleForLibraryOnDay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBookingFromWeb">
+      <soap:operation soapAction="http://princh.com/createBookingFromWeb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResources">
+      <soap:operation soapAction="http://princh.com/getAllResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAdultChildResource">
+      <soap:operation soapAction="http://princh.com/getAdultChildResource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnavailableTimes">
+      <soap:operation soapAction="http://princh.com/getUnavailableTimes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFunctions">
+      <soap:operation soapAction="http://princh.com/getFunctions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOneResourceForSelections">
+      <soap:operation soapAction="http://princh.com/getOneResourceForSelections" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateUser">
+      <soap:operation soapAction="http://princh.com/validateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBooking">
+      <soap:operation soapAction="http://princh.com/createBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserForBooking">
+      <soap:operation soapAction="http://princh.com/getUserForBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGlobalSetupId">
+      <soap:operation soapAction="http://princh.com/getGlobalSetupId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkIfRegistered">
+      <soap:operation soapAction="http://princh.com/checkIfRegistered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerLibrary">
+      <soap:operation soapAction="http://princh.com/registerLibrary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerStation">
+      <soap:operation soapAction="http://princh.com/registerStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStationSetup">
+      <soap:operation soapAction="http://princh.com/getStationSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createSetup">
+      <soap:operation soapAction="http://princh.com/createSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSetup">
+      <soap:operation soapAction="http://princh.com/getSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSetupId">
+      <soap:operation soapAction="http://princh.com/getSetupId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGlobalSetup">
+      <soap:operation soapAction="http://princh.com/getGlobalSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createGlobalSetup">
+      <soap:operation soapAction="http://princh.com/createGlobalSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStationName">
+      <soap:operation soapAction="http://princh.com/getStationName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLibraryID">
+      <soap:operation soapAction="http://princh.com/getLibraryID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConnectionString">
+      <soap:operation soapAction="http://princh.com/getConnectionString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PrinchService1Soap12" type="tns:PrinchService1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAreas">
+      <soap12:operation soapAction="http://princh.com/getAreas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLibraryFor">
+      <soap12:operation soapAction="http://princh.com/getLibraryFor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResources">
+      <soap12:operation soapAction="http://princh.com/getResources" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requireSub">
+      <soap12:operation soapAction="http://princh.com/requireSub" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUrlForValidation">
+      <soap12:operation soapAction="http://princh.com/getUrlForValidation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkIfAvailable">
+      <soap12:operation soapAction="http://princh.com/checkIfAvailable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getScheduleForLibraryOnDay">
+      <soap12:operation soapAction="http://princh.com/getScheduleForLibraryOnDay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBookingFromWeb">
+      <soap12:operation soapAction="http://princh.com/createBookingFromWeb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllResources">
+      <soap12:operation soapAction="http://princh.com/getAllResources" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAdultChildResource">
+      <soap12:operation soapAction="http://princh.com/getAdultChildResource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnavailableTimes">
+      <soap12:operation soapAction="http://princh.com/getUnavailableTimes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFunctions">
+      <soap12:operation soapAction="http://princh.com/getFunctions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOneResourceForSelections">
+      <soap12:operation soapAction="http://princh.com/getOneResourceForSelections" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateUser">
+      <soap12:operation soapAction="http://princh.com/validateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBooking">
+      <soap12:operation soapAction="http://princh.com/createBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserForBooking">
+      <soap12:operation soapAction="http://princh.com/getUserForBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGlobalSetupId">
+      <soap12:operation soapAction="http://princh.com/getGlobalSetupId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkIfRegistered">
+      <soap12:operation soapAction="http://princh.com/checkIfRegistered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerLibrary">
+      <soap12:operation soapAction="http://princh.com/registerLibrary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerStation">
+      <soap12:operation soapAction="http://princh.com/registerStation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStationSetup">
+      <soap12:operation soapAction="http://princh.com/getStationSetup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createSetup">
+      <soap12:operation soapAction="http://princh.com/createSetup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSetup">
+      <soap12:operation soapAction="http://princh.com/getSetup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSetupId">
+      <soap12:operation soapAction="http://princh.com/getSetupId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGlobalSetup">
+      <soap12:operation soapAction="http://princh.com/getGlobalSetup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createGlobalSetup">
+      <soap12:operation soapAction="http://princh.com/createGlobalSetup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStationName">
+      <soap12:operation soapAction="http://princh.com/getStationName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLibraryID">
+      <soap12:operation soapAction="http://princh.com/getLibraryID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConnectionString">
+      <soap12:operation soapAction="http://princh.com/getConnectionString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PrinchService1">
+    <wsdl:port name="PrinchService1Soap" binding="tns:PrinchService1Soap">
+      <soap:address location="http://52.38.37.58/PrinchService1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PrinchService1Soap12" binding="tns:PrinchService1Soap12">
+      <soap12:address location="http://52.38.37.58/PrinchService1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
