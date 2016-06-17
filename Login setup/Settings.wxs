@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <Property Id="controlPanelStatus_Prop" Value="1"/>
+      <Property Id="lblRadioButton_Prop" Value="1"/>
+      <Property Id="IMGPATH" Value="C:\"/>
+      <Property Id="age" Value="0"/>
+      <Property Id="preebooking" Value="0"/>
+
+
+
+
+
+
+      <Dialog Id="LibrarySettings" Width="370" Height="280">
+
+        <Control Id="infotext" Width="328" Height="42" X="25" Y="41" Type="Text">
+          <Text>In this step you will choose the default settings for the installed stations &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;.....</Text>
+        </Control>
+
+        <Control Type="Line" Id="upperline" Width="370" Height="2" X="0" Y="34" />
+
+        <Control Type="Text" Id="labelSetup" Width="275" Height="12" X="25" Y="88">
+          <Text>[Setup_Text]</Text>
+          
+          <Condition Action="show"><![CDATA[Edit = "0"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "1"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="labelControlPanel" Width="275" Height="12" X="25" Y="105">
+          <Text>[Control_Panel]</Text>
+          
+          <Condition Action="show"><![CDATA[Edit = "0"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "1"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="labelCmdStatus" Width="275" Height="12" X="25" Y="122">
+          <Text>[Cmd_Status]</Text>
+         
+          <Condition Action="show"><![CDATA[Edit = "0"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "1"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="labelAge" Width="275" Height="12" X="25" Y="139">
+          <Text>[Preebooking_day]</Text>
+          
+          <Condition Action="show"><![CDATA[Edit = "0"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "1"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="labelPreebooking" Width="275" Height="12" X="25" Y="156">
+          <Text>[Age_rest]</Text>
+          
+          <Condition Action="show"><![CDATA[Edit = "0"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "1"]]></Condition>
+          
+        </Control>
+
+        <Control Type="PushButton" Id="Edit" Width="56" Height="17" X="12" Y="259">
+          <Text>Edit</Text>
+          <Publish Event="DoAction" Value="CustomAction6" Order="11">1</Publish>
+          <Publish Property="Edit" Value="[Edit]" Order="13"><![CDATA[1]]></Publish>
+          <Publish Event="NewDialog" Value="LibrarySettings" Order="15" />
+          <Condition Action="show"><![CDATA[Edit = "0"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "1" OR (Edit="0" AND InstallType_Prop=1)]]></Condition>
+        </Control>
+
+
+
+
+        <Control Type="Text" Id="lblContolPanel" Width="120" Height="12" X="25" Y="88">
+          <Text>Status of Control Panel programs </Text>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="RadioButtonGroup" Property="controlPanelStatus_Prop" Id="controlPanelStatus" Width="120" Height="17" X="25" Y="100">
+          <RadioButtonGroup Property="controlPanelStatus_Prop">
+            <RadioButton Text="Hide" Height="17" Value="1" Width="50" X="0" Y="0" />
+            <RadioButton Text="Show" Height="17" Value="0" Width="50" X="80" Y="0" />
+
+          </RadioButtonGroup>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Id="lblCmd" Width="120" Height="12" X="25" Y="120" Type="Text">
+          <Text>Status of Command Prompt</Text>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="RadioButtonGroup" Property="lblRadioButton_Prop" Id="lblRadioButton" Width="120" Height="17" X="25" Y="132">
+          <RadioButtonGroup Property="lblRadioButton_Prop">
+            <RadioButton Text="Disable" Height="17" Value="1" Width="50" X="0" Y="0" />
+            <RadioButton Text="Enable" Height="17" Value="0" Width="50" X="80" Y="0" />
+          </RadioButtonGroup>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="lblPrebooking" Width="328" Height="12" X="25" Y="150">
+          <Text>How many days in advance can a booking be made</Text>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="Edit" Id="preebokingDays" Width="328" Height="15" X="25" Y="162" Property="preebooking" Indirect="no">
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="lblAgeRestriction" Width="120" Height="12" X="26" Y="180">
+          <Text>Age restriction</Text>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="Edit" Id="ageRestriction" Width="328" Height="17" X="25" Y="192" Property="age" Indirect="no" >
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="Text" Id="lblImage" Width="328" Height="12" X="25" Y="210">
+          <Text>Please select image for background login</Text>
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+        <Control Type="PathEdit" Id="imagePath" Width="292" Height="15" X="61" Y="222" Property="IMGPATH" Indirect="no" >
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+        </Control>
+
+        <Control Type="PushButton" Id="browseButton" Width="35" Height="17" X="25" Y="222" >
+          <Text>Browse</Text>
+
+          <Publish Event="DoAction" Value="CustomAction3" Order="11">1</Publish>
+          <Publish Property="IMGPATH" Value="[IMGPATH]" Order="13"><![CDATA[1]]></Publish>          
+          <Condition Action="show"><![CDATA[Edit = "1"]]></Condition>
+          <Condition Action="hide"><![CDATA[Edit = "0"]]></Condition>
+
+        </Control>
+        <Control Type="PushButton" Id="Cancel" Width="56" Height="17" X="308" Y="259">
+          <Text>Cancel</Text>
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Type="PushButton" Id="Back" Width="56" Height="17" X="188" Y="259">
+          <Text>Back</Text>
+          <Publish Event="NewDialog" Value="LibraryCredUI" Order="10" />
+        </Control>
+        <Control Type="PushButton" Id="Next" Width="56" Height="17" X="248" Y="259">
+          <Text>Next</Text>
+          <Publish Event="DoAction" Value="CustomAction2" Order="14">1</Publish>
+
+          <Publish Event="NewDialog" Value="WebServiceSetup" Order="15" />
+
+        </Control>
+
+      </Dialog>
+
+    </UI>
+  </Fragment>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="TARGETBROWSEDIR">
+        <Directory Id="ProgramFilesFolder"/>
+
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <Binary Id="CustomAct2Binary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id="CustomAction2" BinaryKey="CustomAct2Binary" DllEntry="CustomAction2"  />
+  </Fragment>
+  <Fragment>
+    <Binary Id="CustomAct3Binary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id="CustomAction3" BinaryKey="CustomAct3Binary" DllEntry="CustomAction3"  />
+  </Fragment>
+  <Fragment>
+    <Binary Id="CustomAct6Binary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id="CustomAction6" BinaryKey="CustomAct6Binary" DllEntry="CustomAction6"  />
+  </Fragment>
+  
+</Wix>

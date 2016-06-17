@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Bundle Name="Bootstrapper1" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="6f1290be-884e-401b-8a42-971f70006c17">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
+      <bal:WixStandardBootstrapperApplication
+        LicenseUrl=""
+        xmlns:bal="http://schemas.microsoft.com/wix/BalExtension" />
+    </BootstrapperApplicationRef>
+
+		<Chain>
+			<!-- TODO: Define the list of chained packages. -->
+      <PackageGroupRef Id="Netfx45FullPackage" />
+    </Chain>
+	</Bundle>
+  <Fragment>
+    <PackageGroup Id="Netfx45FullPackage">
+      <MsiPackage Id="Login_setup" Cache="no" Compressed="no" DisplayInternalUI="yes" Vital="yes" SourceFile="$(var.installerPath)\Login_setup.msi" />
+      <MsiPackage Id="StartLogin" Cache="no" Compressed="no" DisplayInternalUI="yes" Vital="yes" SourceFile="$(var.installerPathStart)\StartLogin_setup.msi"/>
+    </PackageGroup>
+  </Fragment>
+</Wix>

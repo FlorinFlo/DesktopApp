@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Bundle Name="setup" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="48559a61-6927-429b-a1dd-3bd79e14ff8d">
+		<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+
+		<Chain>
+			<!-- TODO: Define the list of chained packages. -->
+			<MsiPackage SourceFile="D:\New folder\LogIn\Login setup\bin\Release\Login_setup.msi" />
+		</Chain>
+	</Bundle>
+</Wix>

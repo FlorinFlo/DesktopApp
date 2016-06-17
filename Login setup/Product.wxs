@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Login_setup" Language="1033" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="5758d2e7-504c-4165-b83e-d8c8a94f179f">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="Login_setup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+   
+    
+    <UI>
+      <UIRef Id="WixUI_Mondo"/>
+      <UIRef Id="WixUI_ErrorProgressText"/>
+     
+      <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="LibraryCredUI" Order="10" >LicenseAccepted = "1"</Publish>
+      <Publish Dialog="LibraryCredUI" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg" Order="10">NOT Installed</Publish>
+      
+      <Publish Dialog="LibraryCredUI" Control="Next" Event="NewDialog" Value="LibrarySettings" Order="11">NOT Installed</Publish>
+      
+      <Publish Dialog="LibrarySettings" Control="Back" Event="NewDialog" Value="LibraryCredUI" Order="10">NOT Installed</Publish>
+      <Publish Dialog="LibrarySettings" Control="Next" Event="NewDialog" Value="WebServiceSetup" Order="11">NOT Installed</Publish>
+      <Publish Dialog="WebServiceSetup" Control="Back" Event="NewDialog" Value="LibraryCredUI" Order="10">NOT Installed</Publish>
+      <Publish Dialog="WebServiceSetup" Control="Next" Event="NewDialog" Value="CustomizeDlg" Order="11">NOT Installed</Publish>
+      
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="WebServiceSetup" Order="10">NOT Installed</Publish>
+    </UI>
+    <Binary Id="CustomAct5Binary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id='CustomAction5' BinaryKey="CustomAct5Binary"  DllEntry="CustomAction5" Execute="deferred" />
+
+    <CustomAction Id="CustomAction5.SetProperty" Return="check" Property="CustomAction5"  Value="INSTALLFOLDER=[INSTALLFOLDER];LIBID=[LIBID]" Execute="immediate" />
+    
+    
+    <InstallExecuteSequence>
+      <Custom Action="CustomAction5.SetProperty"  After="CostInitialize" ></Custom>
+      <Custom Action="CustomAction5"  After="InstallFiles" ></Custom>
+    </InstallExecuteSequence>
+    
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Login_setup" />
+        <Directory Id="IMGPATH" Name="TestDir"/>
+        
+			</Directory>
+		</Directory>    
+	</Fragment>
+
+  
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <Component Id="ProductComponent">
+        <File Id="LogIn.exe" Source="$(var.LogIn.TargetPath)" KeyPath="yes"></File>
+      </Component>
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+	</Fragment>
+</Wix>

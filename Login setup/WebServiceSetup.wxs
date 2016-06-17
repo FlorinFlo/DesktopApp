@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <UI>
+      <Property Id="LIBID" Value="0"/>
+      <Dialog Id="WebServiceSetup" Width="380" Height="270">
+        <Control Type="Bitmap" Id="btm3" Width="380" Height="30" X="0" Y="0"  Text="[BannerBitmap]"/>
+        <Control Type="Line" Id="upperLine" Width="380" Height="2" X="0" Y="30" />
+        <Control Id="lblText" Width="328" Height="40" X="25" Y="42" Type="Text">
+          <Text>Please insert the URL to your webService if you want to connect with your database at our system for user validation</Text>
+        </Control>
+        <Control Type="Edit" Id="Url" Width="328" Height="15" X="25" Y="116" Property="URLSERVICE"  Indirect="no"/>
+        <Control Type="PushButton" Id="Back" Width="56" Height="17" X="202" Y="248">
+          <Text>Back</Text>
+          <Publish Event="NewDialog" Value="LibrarySettings" Order="10" />
+        </Control>
+        <Control Id="Next" Width="50" Height="17" X="262" Y="248" Type="PushButton">
+          <Text>Next</Text>
+          <Publish Event="DoAction" Value="CustomAction4" Order="12">1</Publish>
+          <Publish Property="LIBID" Value="[LIBID]" Order="14"></Publish>
+          <Publish Event="NewDialog" Value="CustomizeDlg" Order="13" />
+         
+          
+         
+        </Control>
+        <Control Type="PushButton" Id="Cancel" Width="56" Height="17" X="319" Y="248">
+          <Text>Cancel</Text>
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+      </Dialog>
+    </UI>
+	</Fragment>
+  <Fragment>
+    <Binary Id="CustomAct4Binary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id="CustomAction4" BinaryKey="CustomAct4Binary" DllEntry="CustomAction4"  />
+  </Fragment>
+  
+ 
+  
+  
+  
+</Wix>
