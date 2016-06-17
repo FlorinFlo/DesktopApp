@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <UI>
+      <Dialog Id="Info" Width="370" Height="280">
+        <Control Type="Bitmap" Id="btm" Width="370" TabSkip="no" Height="34" X="0" Y="0" Text="[BannerBitmap]">
+
+        </Control>
+        <Control Type="Text" Id="info" Width="328" Height="42" X="25" Y="41">
+          <Text>
+            This installation will guide you through necesary steps to connect to our system .&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+          </Text>
+        </Control>
+        <Control Type="PushButton" Id="Cancel" Width="56" Height="17" X="308" Y="259">
+          <Text>Cancel</Text>
+          <Publish Event="SpawnDialog" Value="CancelDlg" Order="10">1</Publish>
+        </Control>
+        <Control Type="PushButton" Id="Next" Width="56" Height="17" X="248" Y="259">
+          <Text>Next</Text>
+          <Publish Event="DoAction" Value="CustomAction2" Order="9">1</Publish>
+          <Publish Event="NewDialog" Value="CustomizeDlg" Order="10"></Publish>
+
+        </Control>
+        <Control Type="PushButton" Id="Back" Width="56" Height="17" X="188" Y="259">
+          <Text>Back</Text>
+          <Publish Event="NewDialog" Value="LicenseAgreementDlg" Order="10" />
+
+        </Control>
+
+      </Dialog>
+      
+    </UI>
+	</Fragment>
+  <Fragment>
+    <Binary Id="CustomActBinary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id="CustomAction2" BinaryKey="CustomActBinary" DllEntry="CustomAction2"  />
+  </Fragment>
+
+  <Fragment>
+    <Binary Id="CustomAct1Binary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll"/>
+    <CustomAction Id="CustomAction1" BinaryKey="CustomAct1Binary" DllEntry="CustomAction1"  />
+  </Fragment>
+</Wix>
